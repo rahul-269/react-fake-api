@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { userData } from '../../data';
+
+
 
 function List({ users, handleEdit, handleDelete }) {
+            
   return (
-    <div>
+    <div className='contain-table'>
       <table className='striped-table'>
                 <thead>
                     <tr>
@@ -44,13 +48,18 @@ function List({ users, handleEdit, handleDelete }) {
                                 </td>
                             </tr>
                         ))
+                      
                     ) : (
                         <tr>
                             <td colSpan={7}>No Users</td>
                         </tr>
                     )}
+
+
                 </tbody>
             </table>
+
+           
     </div>
   )
 }
