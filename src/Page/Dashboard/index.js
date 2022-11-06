@@ -17,11 +17,35 @@ function Dashboard() {
     const [isEditing, setIsEditing] = useState(false);
 
     const handleEdit = (id) => {
-        console.log('Edit id',id);
+        const [user] = users.filter(user => user.id === id);
+
+        setSelectedUser(user);
+        setIsEditing(true);
     }
 
     const handleDelete = (id) => {
-        console.log('Delete id',id);
+        Swal.fire({
+            icon: 'warning',
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+        }).then(result => {
+            if (result.value) {
+                const [user] = users.filter(user => user.id === id);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Deleted!',
+                    text: `${user.firstName} ${user.lastName}'s data has been deleted.`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+
+                setUsers(users.filter(user => user.id !== id));
+            }
+        });
     }
 
 
