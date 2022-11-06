@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Header({ setIsAdding }) {
+function Header({ setIsAdding , setIsFinding}) {
   return (
       <header>
         <h1>User Management Software</h1>
@@ -8,7 +8,7 @@ function Header({ setIsAdding }) {
             <button onClick={() => setIsAdding(true)}
              className='round-button'>Add User</button>
         
-            <button onClick={() => setIsAdding(true)}
+            <button onClick={() => setIsFinding(true)}
              className='round-button' style={{marginLeft:'30px'}}>Find User</button>
         </div>
       </header>

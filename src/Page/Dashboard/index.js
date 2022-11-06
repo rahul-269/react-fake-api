@@ -6,6 +6,7 @@ import Header from './Header';
 import List from './List';
 import Add from './Add';
 import Edit from './Edit';
+import Find from './Find';
 
 import { userData } from '../../data';
 
@@ -15,6 +16,7 @@ function Dashboard() {
     const [selectedUser, setSelectedUser] = useState(null);
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [isFinding, setIsFinding] = useState(false);
 
     const handleEdit = (id) => {
         const [user] = users.filter(user => user.id === id);
@@ -78,6 +80,15 @@ function Dashboard() {
                 selectedUser={selectedUser}
                 setUsers={setUsers}
                 setIsEditing={setIsEditing}
+                />
+        )}
+
+        {isFinding && (
+            <Find
+                users={users}
+                selectedUser={selectedUser}
+                setUsers={setUsers}
+                setIsFinding={setIsFinding}
                 />
         )}
 
