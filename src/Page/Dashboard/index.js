@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Swal from 'sweetalert2';
+import { faker } from '@faker-js/faker';
 
 import Header from './Header';
 import List from './List';
@@ -15,11 +16,48 @@ function Dashboard() {
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
 
+    const handleEdit = () => {
 
+    }
+
+    const handleDelete = () => {
+
+    }
 
 
   return (
-    <div>Dashboard</div>
+    <div className='container'>
+        {!isAdding && !isEditing && (
+            <>
+            <Header
+                setIsAdding={setIsAdding}
+                />
+                <List 
+                    users={users}
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                    />
+                </>
+        )}
+
+        {isAdding && (
+            <Add
+                users={users}
+                setUsers={setUsers}
+                setIsAdding={setIsAdding}
+                />
+        )}
+
+        {isEditing && (
+            <Edit
+                users={users}
+                selectedUser={selectedUser}
+                setUsers={setUsers}
+                setIsEditing={setIsEditing}
+                />
+        )}
+
+    </div>
   )
 }
 

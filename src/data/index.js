@@ -2,22 +2,22 @@ const userData = [
     {
         id: 7,
         email: 'michael.lawson@reqres.in',
-        first_name: 'Michael',
-        last_name: 'Lawson',
+        firstName: 'Michael',
+        lastName: 'Lawson',
         avatar: 'https://reqres.in/img/faces/7-image.jpg'
       },
       {
         id: 8,
         email: 'lindsay.ferguson@reqres.in',
-        first_name: 'Lindsay',
-        last_name: 'Ferguson',
+        firstName: 'Lindsay',
+        lastName: 'Ferguson',
         avatar: 'https://reqres.in/img/faces/8-image.jpg'
       },
       {
         id: 12,
         email: 'rachel.howell@reqres.in',
-        first_name: 'Rachel',
-        last_name: 'Howell',
+        firstName: 'Rachel',
+        lastName: 'Howell',
         avatar: 'https://reqres.in/img/faces/12-image.jpg'
       }
   ];
