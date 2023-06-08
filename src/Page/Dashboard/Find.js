@@ -1,73 +1,62 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState,useEffect } from 'react'
 import Swal from 'sweetalert2';
+import List from './List';
 
-function Find({ users, selectedUser, setUsers, setIsFinding }) {
-    const [id, setId] = useState('');
-    const [email, setEmail] = useState('');
+function Find({ users, setUsers, setIsFinding }) {
+    
     const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [avatar, setAvatar] = useState('');
-
-    const textInput = useRef(null);
-
-  useEffect(() => {
-      textInput.current.focus();
-  }, [])
+    const [searchedUsers, setSearchedUsers] = useState(users);
+  
 
   const handleFind = e => {
       e.preventDefault();
-      if ( !id ) {
+      if ( !firstName ) {
           return Swal.fire({
               icon: 'error',
               title: 'Error!',
-              text: 'ID is required.',
+              text: 'First name is required.',
               showConfirmButton: true
           });
       }
 
-      const id = console.log('id',id);
-     
-      const user = {
-        id,
-        email,
-        firstName,
-        lastName,
-        avatar
-     };
+      const searched = searchedUsers.filter((user)=> user.firstName.toLowerCase() === firstName.toLowerCase());
+      setSearchedUsers(searched);
 
-     for (let i = 0; i < users.length; i++) {
-        if (users[i].id === id) {
-            email = user.email;
-            firstName= user.firstName;
-            lastName = user.lastName;
-            avatar = user.avatar;
-            break;
-        }
-    }
-      setUsers(users);
-      setIsFinding(false);
-
-      Swal.fire({
+      if(searched.length === 0)
+       {Swal.fire({
+          icon: 'error',
+          title: 'Not Found!',
+          text: `Data Not Found.`,
+          showConfirmButton: true,
+      });}
+      else{
+        Swal.fire({
           icon: 'success',
           title: 'Found!',
-          text: `${firstName} ${lastName}'s data has been Found.`,
+          text: `Results for ${firstName} have been found`,
           showConfirmButton: false,
           timer: 1500
       });
+        
+      }
   };
+
+  useEffect(() => {
+    setSearchedUsers(users);
+}, [firstName,users])
 
 
     return (
         <div className="small-container">
             <form onSubmit={handleFind}>
                 <h1>Find User</h1>
-                <label htmlFor="id">ID</label>
+                <label htmlFor="firstName">Name</label>
                 <input
-                    id="id"
-                    type="id"
-                    name="id"
-                    value={id}
-                    onChange={e => setId(e.target.value)}
+                    id="firstName"
+                    name="firstName"
+                    type='name'
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
                 />
                 <div style={{ marginTop: '30px' }}>
                     <input type="submit" value="Find" />
@@ -80,6 +69,8 @@ function Find({ users, selectedUser, setUsers, setIsFinding }) {
                     />
                 </div>
             </form>
+
+            <List users={searchedUsers}/> 
         </div>
     );
 }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Swal from 'sweetalert2';
-import { faker } from '@faker-js/faker';
 
 import Header from './Header';
 import List from './List';
@@ -53,10 +52,11 @@ function Dashboard() {
 
   return (
     <div className='container'>
-        {!isAdding && !isEditing && (
+        {!isAdding && !isEditing && !isFinding && (
             <>
             <Header
                 setIsAdding={setIsAdding}
+                setIsFinding={setIsFinding}
                 />
                 <List 
                     users={users}
@@ -86,7 +86,6 @@ function Dashboard() {
         {isFinding && (
             <Find
                 users={users}
-                selectedUser={selectedUser}
                 setUsers={setUsers}
                 setIsFinding={setIsFinding}
                 />
